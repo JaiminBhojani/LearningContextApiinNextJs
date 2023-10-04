@@ -1,11 +1,26 @@
-import React from 'react'
+import { PostContext } from '@/context/PostContext'
+import Image from 'next/image'
+import React, { useContext } from 'react'
 
 const Modals = () => {
-  return (
-    <div>
-      Modals
-    </div>
-  )
+
+    const { selectedMeal, closeModal } = useContext(PostContext)
+    const { strMealThumb: image, strMeal: title, strInstructions: text, strSource: source } = selectedMeal
+
+    return (
+        <aside className='modal-overlay'>
+            <div className='modal-container'>
+                <img src={image} className="img modal-img" />
+                <div className='modal-content'>
+                    <h4>{title}</h4>
+                    <p>Cooking Instructions</p>
+                    <p> {text}</p>
+                    <a href={source} target="_blank">Original Source</a>
+                    <button className="btn btn-hipster close-btn" onClick={closeModal}>close</button>
+                </div>
+            </div>
+        </aside>
+    )
 }
 
 export default Modals

@@ -14,6 +14,8 @@ const PostProvider = ({ children }) => {
     const [meals, setMeals] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState('')
+    const [showModal, setShowModal] = useState(false)
+    const [selectedMeal, setSelectedMeal] = useState(null)
 
     const fetchMeals = async (url) => {
         setLoading(true);
@@ -47,8 +49,24 @@ const PostProvider = ({ children }) => {
         fetchMeals(`${allMealsUrl}${searchTerm}`)
     }, [searchTerm])
 
+
+
+
+    const selectMeal = (idMeal, favoriteMeal) => {
+        let meal;
+
+        meal = meals.find((meal) => meal.idMeal === idMeal);
+
+        setSelectedMeal(meal);
+        setShowModal(true)
+    }
+
+    const closeModal = () => {
+        setShowModal(false)
+      }
+
     return (
-        <PostContext.Provider value={({ meals, loading, setSearchTerm, fetchRandomMeal })}>
+        <PostContext.Provider value={({ meals, loading, setSearchTerm, fetchRandomMeal, showModal ,selectMeal, selectedMeal , closeModal})}>
             <div>
                 {children}
             </div>
