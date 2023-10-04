@@ -8,11 +8,11 @@ import Image from 'next/image'
 import { useContext } from 'react'
 
 export default function Home() {
-  const { showModal} = useContext(PostContext);
+  const { showModal , favorites} = useContext(PostContext);
   return (
     <>
       <Search />
-      {/* <Favorites /> */}
+      {favorites.length > 0 && <Favorites />}
       <Meals />
       { showModal && <Modals />}
     </>

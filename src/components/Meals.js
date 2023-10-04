@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React, { useContext } from 'react'
 
 const Meals = () => {
-    const { meals, loading, selectMeal } = useContext(PostContext);
+    const { meals, loading, selectMeal ,addToFavorites } = useContext(PostContext);
     // console.log(meals);
     if (loading) {
         return <section className="section flex items-center justify-center h-screen">
@@ -29,7 +29,7 @@ const Meals = () => {
                             <img src={image} alt={title} className="w-full h-48 object-cover rounded-t-lg mb-4" onClick={() => selectMeal(idMeal)} />
                             <footer className="text-center">
                                 <h5 className="text-lg font-semibold mb-2">{title}</h5>
-                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                <button onClick={() => addToFavorites(idMeal)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                                     Click Me
                                 </button>
                             </footer>
